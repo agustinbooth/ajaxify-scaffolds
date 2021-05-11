@@ -1,51 +1,54 @@
-<%= form_with(model: movie) do |form| %>
-  <% if movie.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+<div id="<%= dom_id(movie)%>_form">
+  <%= form_with(model: movie, local: false) do |form| %>
+  
+    <% if movie.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
 
-      <ul>
-        <% movie.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <ul>
+          <% movie.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <td class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </td>
+
+      <td class="field">
+        <%= form.label :year %>
+        <%= form.number_field :year %>
+      </td>
+
+      <td class="field">
+        <label for="movie_director_id">Director</label>
+        <select name="movie[director_id]" id="movie_director_id">
+        <% @directors.order(:name).each do |director|%>
+          <option value="<%= director.id %>"><%= director.name %></option>
         <% end %>
-      </ul>
-    </div>
+      </td>    
+
+      <td class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+      </td>
+
+      <td class="field">
+        <%= form.label :duration %>
+        <%= form.number_field :duration %>
+      </td>
+
+      <td class="field">
+        <% form.label :image %>
+        <% form.text_field :image %>
+      </td>
+
+      <td class="actions">
+        <%= form.submit %>
+      </td>  
   <% end %>
+</div>
 
-    <td class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title %>
-    </td>
-
-    <td class="field">
-      <%= form.label :year %>
-      <%= form.number_field :year %>
-    </td>
-
-    <td class="field">
-      <label for="movie_director_id">Director</label>
-      <select name="movie[director_id]" id="movie_director_id">
-      <% @directors.order(:name).each do |director|%>
-        <option value="<%= director.id %>"><%= director.name %></option>
-      <% end %>
-    </td>    
-
-    <td class="field">
-      <%= form.label :description %>
-      <%= form.text_area :description %>
-    </td>
-
-    <td class="field">
-      <%= form.label :duration %>
-      <%= form.number_field :duration %>
-    </td>
-
-    <td class="field">
-      <% form.label :image %>
-      <% form.text_field :image %>
-    </td>
-
-    <td class="actions">
-      <%= form.submit %>
-    </td>
-
-<% end %>
