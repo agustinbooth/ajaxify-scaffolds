@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy ]
+  before_action :set_movie, only: %i[ show edit update destroy edit_element]
 
   # GET /movies or /movies.json
   def index
@@ -18,6 +18,13 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
+    @directors = Director.all
+  end
+
+  def edit_element
+    @directors = Director.all
+    @element = params.fetch(:element)
+    render "movies/edit_element"
   end
 
   # POST /movies or /movies.json
@@ -67,6 +74,6 @@ class MoviesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def movie_params
-      params.require(:movie).permit(:title, :description, :duration, :image, :year, :director_id)
+      params.require(:movie).permit(:title, :description, :duration, :image, :year, :director_id, :element)
     end
 end

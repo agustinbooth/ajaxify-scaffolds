@@ -1,0 +1,23 @@
+  <%= form_with(model: movie, id: dom_id(movie)+"_form") do |form| %>
+  
+    <% if movie.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+        <ul>
+          <% movie.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <td class="field">
+        <%= form.label element %>
+        <%= form.text_field element %>
+      </td>
+
+      <td class="actions">
+        <%= form.submit %>
+      </td>  
+  <% end %>
