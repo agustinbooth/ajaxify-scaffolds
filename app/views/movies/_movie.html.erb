@@ -1,5 +1,9 @@
       <tr id= <%= dom_id(movie) %>>
-        <td><%= link_to movie.title, edit_movie_element_path(id: movie.id, element: "title") %></td>
+        <td>
+          <div id= <%= dom_id(movie) %>_title>
+          <%= link_to movie.title, edit_movie_element_path(id: movie.id, element: "title"), remote: true %>
+          </div>
+        </td>
         <td><%= link_to movie.year, edit_movie_element_path(id: movie.id, element: "year") %></td>
         <td><%= link_to movie.director.name, edit_movie_element_path(id: movie.id, element: "director") %></td>
         <td><%= link_to movie.description, edit_movie_element_path(id: movie.id, element: "description") %></td>

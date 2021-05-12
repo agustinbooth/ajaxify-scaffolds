@@ -1,0 +1,2 @@
+var element_input = $("#<%= dom_id(@movie) %>_<%= @element %>")
+element_input.replaceWith("<%= j(render "form_element", movie: @movie, element: @element) %>")
