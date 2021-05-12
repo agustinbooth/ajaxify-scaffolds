@@ -25,7 +25,9 @@
 
       <td class="field">
         <label for="movie_director_id">Director</label>
-        <select name="movie[director_id]" id="movie_director_id">
+        <select name="movie[director_id]" id="movie_director_id"  
+        onchange="Rails.fire(this.form, 'submit')"
+>
         <% @directors.order(:name).each do |director|%>
           <option value="<%= director.id %>"><%= director.name %></option>
         <% end %>

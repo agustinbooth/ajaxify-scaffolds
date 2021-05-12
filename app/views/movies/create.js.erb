@@ -1,1 +1,3 @@
-$("#<%= dom_id(@movie) %>_form").hide();
+var added_movie = $("<%= j(render 'movie', movie: @movie) %>")
+
+$("#movies").prepend(added_movie)
