@@ -1,5 +1,4 @@
-<div id="<%= dom_id(movie)%>_form">
-  <%= form_with(model: movie, local: false) do |form| %>
+  <%= form_with(model: movie, local: false, id: dom_id(movie)+"_form") do |form| %>
   
     <% if movie.errors.any? %>
       <div id="error_explanation">
@@ -52,5 +51,4 @@
         <%= form.submit %>
       </td>  
   <% end %>
-</div>
 
