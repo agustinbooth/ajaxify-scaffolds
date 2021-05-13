@@ -13,7 +13,9 @@
         </td>
 
         <td>
-        <%= link_to movie.director.name, edit_movie_element_path(id: movie.id, element: "director") %>
+        <div id= <%= dom_id(movie) %>_director>
+        <%= link_to movie.director.name, edit_movie_element_path(id: movie.id, element: "director"), remote: true %>
+        </div>
         </td>
         
         <td>
