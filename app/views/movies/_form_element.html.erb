@@ -1,4 +1,4 @@
-  <%= form_with(model: movie, id: dom_id(movie)+"_form") do |form| %>
+  <%= form_with(model: movie, local: false, id: dom_id(movie)+"_form") do |form| %>
   
     <% if movie.errors.any? %>
       <div id="error_explanation">
@@ -13,11 +13,11 @@
     <% end %>
 
       <td class="field">
-        <% form.label element %>
-        <%= form.text_field element %>
+        <% form.label element, id: dom_id(movie)+"_"+element %>
+        <%= form.text_field element, id: dom_id(movie)+"_"+element %>
       </td>
 
       <td class="actions">
-        <%= form.submit %>
+        <% form.submit %>
       </td>  
   <% end %>
