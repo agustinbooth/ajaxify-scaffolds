@@ -7,13 +7,26 @@
         </td>
 
         <td>
-        <%= link_to movie.year, edit_movie_element_path(id: movie.id, element: "year") %>
-        
+        <div id= <%= dom_id(movie) %>_year>
+        <%= link_to movie.year, edit_movie_element_path(id: movie.id, element: "year"), remote: true %>
+        </div>
         </td>
-        <td><%= link_to movie.director.name, edit_movie_element_path(id: movie.id, element: "director") %></td>
+
+        <td>
+        <%= link_to movie.director.name, edit_movie_element_path(id: movie.id, element: "director") %>
+        </td>
+        
         <td>
         <%= link_to movie.description, edit_movie_element_path(id: movie.id, element: "description") %>
         </td>
-        <td><%= link_to movie.duration, edit_movie_element_path(id: movie.id, element: "duration") %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, remote: true %></td>
+        
+        <td>
+        <div id= <%= dom_id(movie) %>_duration>
+        <%= link_to movie.duration, edit_movie_element_path(id: movie.id, element: "duration"), remote:true %>
+        </div>
+        </td>
+
+        <td>
+        <%= link_to 'Destroy', movie, method: :delete, remote: true %>
+        </td>
       </tr>

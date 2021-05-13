@@ -4,7 +4,7 @@ $('#<%= dom_id(@movie) %>_<%= @element %>_form').keypress(function(e){
      }
     });
 
-$('#<%= dom_id(@movie) %>_<%= @element %>_form').replaceWith("<div id= <%= dom_id(@movie)+'_'+@element %>> <%= j(link_to @movie.title, edit_movie_element_path(id: @movie.id, element: @element ), remote: true) %> </div>");
+$('#<%= dom_id(@movie) %>_<%= @element %>_form').replaceWith("<div id= <%= dom_id(@movie)+'_'+@element %>> <%= j(link_to @movie.send(@element) , edit_movie_element_path(id: @movie.id, element: @element ), remote: true) %> </div>");
 
 
 
