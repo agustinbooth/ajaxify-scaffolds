@@ -1,0 +1,40 @@
+      <tr id= <%= dom_id(movie) %>>
+
+        <td>
+          <div id= <%= dom_id(movie) %>_title>
+          <%= link_to movie.title, edit_movie_element_path(id: movie.id, element: "title"), remote: true %>
+          </div>
+        </td>
+
+        <td>
+        <div id= <%= dom_id(movie) %>_year>
+        <%= link_to movie.year, edit_movie_element_path(id: movie.id, element: "year"), remote: true %>
+        </div>
+        </td>
+
+        <td>
+        <div id= <%= dom_id(movie) %>_director>
+        <%= link_to movie.director.name, edit_movie_element_path(id: movie.id, element: "director"), remote: true %>
+        </div>
+        </td>
+        
+        <td>
+          <details>
+          <summary>Show description</summary>
+          <div id= <%= dom_id(movie) %>_description>
+          <p><%= movie.description %></p>
+          <%= link_to "Edit description", edit_movie_element_path(id: movie.id, element: "description"), remote: true %>
+          </div>
+          </details>
+        </td>
+        
+        <td>
+        <div id= <%= dom_id(movie) %>_duration>
+        <%= link_to movie.duration, edit_movie_element_path(id: movie.id, element: "duration"), remote:true %>
+        </div>
+        </td>
+
+        <td>
+        <%= link_to 'Destroy', movie, method: :delete, remote: true %>
+        </td>
+      </tr>

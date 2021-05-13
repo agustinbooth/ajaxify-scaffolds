@@ -1,0 +1,5 @@
+var added_movie = $("<%= j(render 'movie', movie: @movie) %>");
+
+$("#movies").prepend(added_movie);
+
+$("#new_movie_form").trigger("reset");

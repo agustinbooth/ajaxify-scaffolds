@@ -1,4 +1,4 @@
-  <%= form_with(model: movie, local: false, id: dom_id(movie)+"_form") do |form| %>
+  <%= form_with(url: update_movie_element_path(id: movie.id, element: element),model: movie, local: false, id: dom_id(movie)+"_"+@element+"_form") do |form| %>
   
     <% if movie.errors.any? %>
       <div id="error_explanation">
@@ -12,38 +12,28 @@
       </div>
     <% end %>
 
-      <td class="field">
-        <%= form.label :title %>
-        <%= form.text_field :title %>
-      </td>
-
-      <td class="field">
-        <%= form.label :year %>
-        <%= form.number_field :year %>
-      </td>
+    <% if @element == "director" %>
 
       <td class="field">
         <label for="movie_director_id">Director</label>
         <select name="movie[director_id]" id="movie_director_id"  
         onchange="Rails.fire(this.form, 'submit')"
->
+      >
         <% @directors.order(:name).each do |director|%>
           <option value="<%= director.id %>"><%= director.name %></option>
         <% end %>
-      </td>    
+      </td>   
+
+    <%else%>
 
       <td class="field">
-        <%= form.label :description %>
-        <%= form.text_area :description %>
-      </td>
-
-      <td class="field">
-        <%= form.label :duration %>
-        <%= form.number_field :duration %>
+        <% form.label element, id: dom_id(movie)+"_"+element %>
+        <%= form.text_field element, id: dom_id(movie)+"_"+element %>
       </td>
 
       <td class="actions">
-        <%= form.submit %>
-      </td>  
-  <% end %>
+        <% form.submit %>
+      </td>
 
+    <%end%>    
+  <% end %>
