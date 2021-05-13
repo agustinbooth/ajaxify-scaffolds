@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy edit_element]
+  before_action :set_movie, only: %i[ show edit update destroy edit_element update_element]
 
   # GET /movies or /movies.json
   def index
@@ -33,6 +33,20 @@ class MoviesController < ApplicationController
     render "movies/edit_element"
   end
 
+  def update_element
+    @element = params.fetch(:element)
+    respond_to do |format|
+      if @movie.update(movie_params)
+        format.html { redirect_to @movie, notice: "Movie was successfully updated." }
+        format.json { render :show, status: :ok, location: @movie }
+        format.js
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @movie.errors, status: :unprocessable_entity }
+      end
+    end
+  end  
+
   # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
@@ -51,6 +65,7 @@ class MoviesController < ApplicationController
 
   # PATCH/PUT /movies/1 or /movies/1.json
   def update
+    @element = params.fetch(:element)
     respond_to do |format|
       if @movie.update(movie_params)
         format.html { redirect_to @movie, notice: "Movie was successfully updated." }

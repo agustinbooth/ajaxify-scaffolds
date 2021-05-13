@@ -1,4 +1,4 @@
-  <%= form_with(model: movie, local: false, id: dom_id(movie)+"_form") do |form| %>
+  <%= form_with(url: update_movie_element_path(id: movie.id, element: element),model: movie, local: false, id: dom_id(movie)+"_"+@element+"_form") do |form| %>
   
     <% if movie.errors.any? %>
       <div id="error_explanation">
