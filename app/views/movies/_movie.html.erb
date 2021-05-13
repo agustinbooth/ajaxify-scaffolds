@@ -19,7 +19,13 @@
         </td>
         
         <td>
-        <%= link_to movie.description, edit_movie_element_path(id: movie.id, element: "description") %>
+          <details>
+          <summary>Show description</summary>
+          <div id= <%= dom_id(movie) %>_description>
+          <p><%= movie.description %></p>
+          <%= link_to "Edit description", edit_movie_element_path(id: movie.id, element: "description"), remote: true %>
+          </div>
+          </details>
         </td>
         
         <td>
